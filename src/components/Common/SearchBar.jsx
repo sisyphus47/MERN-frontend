@@ -13,6 +13,7 @@ const SearchBar = () => {
     e.preventDefault();
     console.log("Searching for:", searchTerm);
     setIsOpen(false);
+    setSearchTerm("");
   };
 
   return (
