@@ -60,6 +60,9 @@ const CartContents = () => {
           </div>
         </div>
       ))}
+      {cartProducts.length === 0 && (
+        <p className="text-gray-500">Your cart is empty.</p>
+      )}
     </div>
   );
 };

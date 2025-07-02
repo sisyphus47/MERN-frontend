@@ -18,7 +18,6 @@ const CartDrawer = ({ drawerOpen, toggleCartDrawer }) => {
         <h2 className="text-xl font-semibold mb-4">Your Cart</h2>
         {/* Cart items will be rendered here */}
         <CartContents />
-        <p className="text-gray-500">Your cart is empty.</p>
       </div>
       {/* Checkout Button */}
       <div className="p-4 bg-white sticky bottom-0">
