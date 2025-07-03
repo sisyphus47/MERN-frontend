@@ -3,7 +3,7 @@ import { useState } from "react";
 const UserManagement = () => {
   const [users, setUsers] = useState([
     {
-      _id: 213123,
+      _id: 1,
       name: "John Doe",
       email: "john@example.com",
       role: "admin",
@@ -27,16 +27,19 @@ const UserManagement = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Determine the next ID
+    const nextId =
+      users.length > 0 ? Math.max(...users.map((u) => u._id)) + 1 : 1;
+
     const newUser = {
-      _id: Date.now(), // Generate unique ID (in real apps, this comes from backend)
+      _id: nextId,
       name: formData.name,
       email: formData.email,
       role: formData.role,
     };
 
-    setUsers((prevUsers) => [...prevUsers, newUser]);
+    setUsers([...users, newUser]);
 
-    // Reset form
     setFormData({
       name: "",
       email: "",
@@ -55,7 +58,7 @@ const UserManagement = () => {
 
   const handleDeleteUser = (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
-      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
+      setUsers(users.filter((user) => user._id !== userId));
     }
   };
 
@@ -121,7 +124,7 @@ const UserManagement = () => {
         </form>
       </div>
 
-      {/* User List */}
+      {/* User List Management */}
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
         <table className="min-w-full text-left text-gray-500">
           <thead className="bg-gray-100 text-xs uppercase text-gray-700">
@@ -132,6 +135,7 @@ const UserManagement = () => {
               <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {users.map((user) => (
               <tr key={user._id} className="border-b hover:bg-gray-50">

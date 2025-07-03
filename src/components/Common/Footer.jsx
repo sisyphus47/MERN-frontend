@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t py-12">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 lg:px-10">
+    <footer className="border-t border-gray-200 py-12">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 lg:px-0">
         {/* Newsletter */}
         <div>
           <h3 className="text-lg text-gray-800 mb-4">Newsletter</h3>
@@ -102,7 +102,7 @@ const Footer = () => {
               <TbBrandMeta className="h-5 w-5" />
             </a>
             <a
-              href="https://www.instagram.com"
+              href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-500"
@@ -110,7 +110,7 @@ const Footer = () => {
               <IoLogoInstagram className="h-5 w-5" />
             </a>
             <a
-              href="https://www.x.com"
+              href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-500"

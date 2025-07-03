@@ -23,6 +23,7 @@ const OrderManagement = () => {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h2 className="text-2xl font-bold mb-6">Order Management</h2>
+
       <div className="overflow-x-auto shadow-md sm:rounded-lg">
         <table className="min-w-full text-left text-gray-500">
           <thead className="bg-gray-100 text-xs uppercase text-gray-700">
@@ -61,23 +62,24 @@ const OrderManagement = () => {
                     </select>
                   </td>
                   <td className="p-4">
-                    {order.status !== "Delivered" && (
-                      <button
-                        onClick={() =>
-                          handleStatusChange(order._id, "Delivered")
-                        }
-                        className="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                      >
-                        Mark as Delivered
-                      </button>
-                    )}
+                    <button
+                      onClick={() => handleStatusChange(order._id, "Delivered")}
+                      className={`px-4 py-2 rounded-lg text-white transition-all ${
+                        order.status === "Delivered"
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-green-500 hover:bg-green-600 cursor-pointer"
+                      }`}
+                      disabled={order.status === "Delivered"}
+                    >
+                      Mark as Delivered
+                    </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
                 <td colSpan={5} className="p-4 text-center text-gray-500">
-                  No Orders found.
+                  No orders found.
                 </td>
               </tr>
             )}

@@ -3,112 +3,28 @@ import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "../components/Products/FilterSidebar";
 import SortOptions from "../components/Products/SortOptions";
 import ProductGrid from "../components/Products/ProductGrid";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsByFilters } from "../../redux/slices/productsSlice";
 
 const CollectionPage = () => {
+  const { collection } = useParams();
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.products);
+  const queryParams = Object.fromEntries([...searchParams]);
+
   const sidebarRef = useRef(null);
   const filterButtonRef = useRef(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      // Simulate fetching products from an API
-      const fetchedProducts = [
-        {
-          _id: 1,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=3",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 2,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=4",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 3,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=5",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 4,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=6",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 5,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=7",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 6,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=8",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 7,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=9",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-        {
-          _id: 8,
-          name: "Casual Shirt",
-          price: 29.99,
-          images: [
-            {
-              url: "https://picsum.photos/500/500?random=10",
-              altText: "Casual Shirt",
-            },
-          ],
-        },
-      ];
-      setProducts(fetchedProducts);
-    }, 1000);
-  }, []); // Fetch products when component mounts
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  useEffect(() => {
+    dispatch(fetchProductsByFilters({ collection, ...queryParams }));
+  }, [dispatch, collection, searchParams]);
 
   useEffect(() => {
     // Close sidebar if clicked outside
@@ -144,9 +60,7 @@ const CollectionPage = () => {
       {/* Filter SideBar */}
       <div
         ref={sidebarRef}
-        className={`${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0`}
+        className={`${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 lg:static lg:translate-x-0`}
       >
         <FilterSidebar />
       </div>
@@ -158,7 +72,7 @@ const CollectionPage = () => {
         <SortOptions />
 
         {/* Product Grid */}
-        <ProductGrid products={products} />
+        <ProductGrid products={products} loading={loading} error={error} />
       </div>
     </div>
   );

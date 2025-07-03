@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-rabbit-red: #ea2e0e;
+}
 
 #root {
   font-family: "Inter", sans-serif;

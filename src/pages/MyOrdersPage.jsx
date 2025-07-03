@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyOrderPage = () => {
   const [orders, setOrders] = useState([]);
-  const navigate = useNavigate();
+  const naviage = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,7 +54,7 @@ const MyOrderPage = () => {
   }, []);
 
   const handleRowClick = (orderId) => {
-    navigate(`/order/${orderId}`);
+    naviage(`/order/${orderId}`);
   };
 
   return (
@@ -104,11 +104,7 @@ const MyOrderPage = () => {
                   <td className="p-2 sm:p-4">${order.totalPrice}</td>
                   <td className="p-2 sm:p-4">
                     <span
-                      className={`${
-                        order.isPaid
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
-                      } px-2 py-1 rounded-full text-xs sm:text-sm font-medium`}
+                      className={`${order.isPaid ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"} px-2 py-1 rounded-full text-xs sm:text-sm font-medium`}
                     >
                       {order.isPaid ? "Paid" : "Pending"}
                     </span>
