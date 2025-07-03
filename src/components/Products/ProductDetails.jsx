@@ -2,29 +2,28 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import ProductGrid from "./ProductGrid";
-
+const selectedProduct = {
+  id: 1,
+  name: "Stylish Jacket",
+  description: "A stylish jacket perfect for all seasons.",
+  price: 59.99,
+  originalPrice: 79.99,
+  brand: "FashionCo",
+  material: "Leather",
+  sizes: ["S", "M", "L", "XL"],
+  colors: ["Red", "Blue", "Black"],
+  images: [
+    {
+      url: "https://picsum.photos/500/500?random=1",
+      altText: "Stylish Jacket",
+    },
+    {
+      url: "https://picsum.photos/500/500?random=2",
+      altText: "Stylish Jacket",
+    },
+  ],
+};
 const ProductDetails = () => {
-  const selectedProduct = {
-    id: 1,
-    name: "Stylish Jacket",
-    description: "A stylish jacket perfect for all seasons.",
-    price: 59.99,
-    originalPrice: 79.99,
-    brand: "FashionCo",
-    material: "Leather",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Red", "Blue", "Black"],
-    images: [
-      {
-        url: "https://picsum.photos/500/500?random=1",
-        altText: "Stylish Jacket",
-      },
-      {
-        url: "https://picsum.photos/500/500?random=2",
-        altText: "Stylish Jacket",
-      },
-    ],
-  };
   const similarProducts = [
     {
       _id: 1,
