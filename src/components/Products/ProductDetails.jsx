@@ -89,6 +89,7 @@ const ProductDetails = () => {
       toast.error("Please select a size and color before adding to cart.", {
         duration: 1000,
       });
+      return; // 🔴 Prevent further execution if validation fails
     }
     setIsButtonDisabled(true);
     setTimeout(() => {
